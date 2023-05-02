@@ -8,26 +8,35 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 public class EliminationController {
+
+    @FXML
+    private ImageView imgBackground;
 
     @FXML
     private ImageView imgResult;
 
     @FXML
-    private AnchorPane innerAnchor;
-
-    @FXML
     private TextField inputFieldName;
 
+    @FXML
+    private StackPane root;
+
+
     public void init() {
-        MusicPlayer musicPlayer = new MusicPlayer();
-        ImageModel imageModel = new ImageModel();
-        musicPlayer.playBackgroundMusic();
+        imgBackground.fitWidthProperty().bind(root.widthProperty());
+        imgBackground.fitHeightProperty().bind(root.heightProperty());
+        imgResult.fitWidthProperty().bind(root.widthProperty());
+        imgResult.fitHeightProperty().bind(root.heightProperty());
+
+        ResultDelegator resultDelegator = new ResultDelegator(imgResult);
+        resultDelegator.initializeBackgroundMusic();
+
         inputFieldName.setOnKeyPressed(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
-                System.out.println("result");
-                imageModel.setImage(imgResult);
+                resultDelegator.enterPressed();
             }
         });
     }
