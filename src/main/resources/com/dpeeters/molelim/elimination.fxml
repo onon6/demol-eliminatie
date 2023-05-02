@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dpeeters.molelim.EliminationController">
+    <AnchorPane fx:id="innerAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <ImageView fx:id="imgResult" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      </children></AnchorPane>
+    <GridPane id="bg-img" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+        <columnConstraints>
+            <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+        <children>
+            <HBox alignment="CENTER">
+                <children>
+                    <Label alignment="CENTER" text="Naam: " textFill="WHITE">
+                        <font>
+                            <Font name="Encode Sans Compressed SemiBold" size="39.0" />
+                        </font>
+                    </Label>
+                    <TextField id="textfield" fx:id="inputFieldName" text="Toos">
+                        <font>
+                            <Font name="Encode Sans Compressed SemiBold" size="39.0" />
+                        </font>
+                    </TextField>
+                </children>
+            </HBox>
+        </children>
+    </GridPane>
+</AnchorPane>
