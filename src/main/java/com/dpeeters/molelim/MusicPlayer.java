@@ -16,6 +16,8 @@ public class MusicPlayer {
 
 
     public void playBackgroundMusic() {
+        if (backgroundMusicTask != null) return;
+
         backgroundMusicTask = new Task<>() {
             @Override
             protected Clip call() throws Exception {
@@ -39,6 +41,7 @@ public class MusicPlayer {
     }
 
     public void stopBackgroundMusic() {
+        if (backgroundMusicTask == null) return;
         try {
             backgroundMusicTask.get().stop();
             backgroundMusicTask = null;

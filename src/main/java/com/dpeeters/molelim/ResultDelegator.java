@@ -4,6 +4,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ResultDelegator {
 
     private boolean isShowingResult;
@@ -18,27 +22,33 @@ public class ResultDelegator {
         this.root = root;
     }
 
-    public ImageView test() {
-     return imageModel.getImageView(ResultType.GREEN);
-    }
-
     public void enterPressed(String candidateName) {
         if (isShowingResult) {
             root.getChildren().remove(imageModel.getLastImageView());
             isShowingResult = false;
-        } else {
-            //imageModel.setImage(ResultType.RED);
-            //musicPlayer.stopBackgroundMusic();
-            //musicPlayer.playEliminatedScreenSound();
-            //isShowingResult = true;
-            ImageView resultImageView = imageModel.getImageView(ResultType.RED);
-            resultImageView.setFitWidth(root.getWidth());
-            resultImageView.setFitHeight(root.getHeight());
-            root.getChildren().add(resultImageView);
-            //mediaModel.setImage(ResultType.GREEN);
-            musicPlayer.playEliminatedScreenSound();
-            isShowingResult = true;
+            musicPlayer.playBackgroundMusic();
+            return;
         }
+        List<String> geelimineerdenList = new ArrayList<>();
+        ImageView resultImageView;
+        try {
+            geelimineerdenList = GeelimineerdenReader.getGeelimineerden();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        if (geelimineerdenList.contains(candidateName)) {
+            resultImageView = imageModel.getImageView(ResultType.RED);
+            musicPlayer.playEliminatedScreenSound();
+            musicPlayer.stopBackgroundMusic();
+        } else {
+            resultImageView = imageModel.getImageView(ResultType.GREEN);
+            musicPlayer.playPassScreenSound();
+        }
+
+        resultImageView.setFitWidth(root.getWidth());
+        resultImageView.setFitHeight(root.getHeight());
+        root.getChildren().add(resultImageView);
+        isShowingResult = true;
     }
 
     public void initializeBackgroundMusic() {

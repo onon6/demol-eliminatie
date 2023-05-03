@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="root" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dpeeters.molelim.EliminationController">
@@ -48,5 +47,4 @@
         </children>
     </GridPane>
    <ImageView fx:id="imgResult" fitHeight="100.0" fitWidth="1000.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   <MediaView fx:id="mediaViewResult" fitHeight="500.0" fitWidth="500.0" />
 </StackPane>
