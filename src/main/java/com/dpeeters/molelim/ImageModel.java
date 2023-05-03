@@ -6,27 +6,34 @@ import javafx.scene.image.ImageView;
 
 public class ImageModel {
 
-    Image imageGreen;
-    Image imageRed;
-    ImageView resultImage;
+    private CustomAnimation customAnimationGreen;
+    private CustomAnimation customAnimationRed;
+    private ImageView lastImageView;
 
-    public ImageModel(ImageView resultImage) {
-        this.resultImage = resultImage;
-        imageGreen = new Image(getClass().getResourceAsStream("/com/dpeeters/molelim/img/green_edited.png"));
-        imageRed = new Image(getClass().getResourceAsStream("/com/dpeeters/molelim/img/red_edited.png"));
+    public ImageModel() {
+        customAnimationGreen = new AnimatedGif(getClass().getResource("/com/dpeeters/molelim/img/green.gif").toExternalForm(), 1000).getAnimation();
+        customAnimationGreen.setCycleCount(1);
+        customAnimationRed = new AnimatedGif(getClass().getResource("/com/dpeeters/molelim/img/red.gif").toExternalForm(), 1000).getAnimation();
+        customAnimationRed.setCycleCount(1);
     }
 
-
-    public void setImage(ResultType resultType) {
-        Platform.runLater(() -> {
-            switch (resultType) {
-                case GREEN -> resultImage.setImage(imageGreen);
-                case RED -> resultImage.setImage(imageRed);
+    public ImageView getImageView(ResultType resultType) {
+        switch (resultType) {
+            case GREEN -> {
+                customAnimationGreen.play();
+                lastImageView = customAnimationGreen.getView();
+                return lastImageView;
             }
-        });
+            case RED -> {
+                customAnimationRed.play();
+                lastImageView = customAnimationRed.getView();
+                return lastImageView;
+            }
+        }
+        return null;
     }
 
-    public void clearImage() {
-        Platform.runLater(() -> resultImage.setImage(null));
+    public ImageView getLastImageView() {
+        return lastImageView;
     }
 }

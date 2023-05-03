@@ -2,6 +2,7 @@ module com.dpeeters.molelim {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
+    requires javafx.swing;
     requires java.desktop;
 
     requires org.controlsfx.controls;

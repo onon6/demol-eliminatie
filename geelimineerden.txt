@@ -1,0 +1,5 @@
+# Voeg hieronder de naam (namen) toe van de geëlimineerden. Elke naam moet op een nieuwe regel staan.-
+# Bijvoorbeeld:
+#
+# Kaat
+# Bram
